@@ -7,7 +7,9 @@ const TestComponent = () => {
 
   return (
     <div>
-      <Button className="text-3xl">{t('test')}</Button>
+      <Button variant="contained" className="text-3xl">
+        {t('test')}
+      </Button>
     </div>
   );
 };
