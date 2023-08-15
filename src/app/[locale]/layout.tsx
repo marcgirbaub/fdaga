@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { useLocale } from 'next-intl';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
