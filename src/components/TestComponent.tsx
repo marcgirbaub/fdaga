@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './styles.module.css';
-import { Button } from '@mui/material';
 import { useTranslations } from 'next-intl';
+import { Button } from '@mui/material';
 
 const TestComponent = () => {
   const t = useTranslations();
 
   return (
-    <div className={styles.testComponent}>
-      <Button variant="contained">{t('test')}</Button>
+    <div>
+      <Button variant="contained" className="text-3xl">
+        {t('test')}
+      </Button>
     </div>
   );
 };
