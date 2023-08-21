@@ -1,7 +1,15 @@
 import React, { FC } from 'react';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import { MenuItem, Select, TextField, styled } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  styled,
+} from '@mui/material';
+import { formFlexGapY } from '../styleClassNames';
 
 const StyledDatePicker = styled(DatePicker)``;
 
@@ -20,8 +28,9 @@ const DateAndTimeSelector: FC<DateAndTimeSelectorProps> = () => {
   };
 
   return (
-    <div>
+    <div className={`w-full flex flex-col ${formFlexGapY}`}>
       <DatePicker
+        label="Date"
         disablePast
         shouldDisableDate={handleDisableDate}
         renderLoading={() => <p>Loading...</p>}
@@ -33,9 +42,20 @@ const DateAndTimeSelector: FC<DateAndTimeSelectorProps> = () => {
           },
         }}
       />
-      <Select fullWidth size="small">
-        <MenuItem value={10}>Ten</MenuItem>
-      </Select>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label" size="small">
+          Hour
+        </InputLabel>
+
+        <Select
+          labelId="time-selector-label"
+          label="Hour"
+          fullWidth
+          size="small"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 };
