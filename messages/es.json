@@ -1,4 +1,6 @@
 {
   "test": "un test esp",
-  "reserveFormTitle": "Pide una cita"
+  "homeTitle": "Tu fisio de confianza",
+  "reserveFormTitle": "Pide una cita",
+  "reserveFormCTA": "Reservar"
 }
