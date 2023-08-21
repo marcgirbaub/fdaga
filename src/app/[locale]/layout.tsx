@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import CssBaseline from '@mui/material/CssBaseline';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,7 +36,9 @@ export default async function RootLayout({
       <body className={inter.className}>
         <CssBaseline />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {children}
+          </LocalizationProvider>
         </NextIntlClientProvider>
       </body>
     </html>
