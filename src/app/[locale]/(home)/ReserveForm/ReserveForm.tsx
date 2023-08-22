@@ -15,7 +15,6 @@ const ReserveForm: FC<ReserveFormProps> = () => {
         <TextField size="small" label="email" name="email" required />
         <TextField size="small" label="comments" name="comments" />
         <TextField size="small" label="name" name="name" />
-
         <Button variant="contained"> {t('reserveFormCTA')}</Button>
       </form>
     </div>
