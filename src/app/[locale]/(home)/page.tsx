@@ -2,7 +2,6 @@
 
 import CenterMap from '@/components/CenterMap/CenterMap';
 import PageContainer from '@/components/PageContainer/PageContainer';
-import TestComponent from '@/components/TestComponent';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import ReserveForm from './ReserveForm/ReserveForm';
@@ -17,7 +16,6 @@ export default function Home() {
           <h1 className="text-gray-700">{t('homeTitle')}</h1>
           <ReserveForm />
         </div>
-        <TestComponent />
         <CenterMap />
       </div>
     </PageContainer>
