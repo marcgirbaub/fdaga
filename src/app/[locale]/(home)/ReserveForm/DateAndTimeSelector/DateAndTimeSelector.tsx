@@ -1,21 +1,12 @@
 import React, { FC } from 'react';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  styled,
-} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { formFlexGapY } from '../styleClassNames';
+import { useTranslations } from 'next-intl';
 
-const StyledDatePicker = styled(DatePicker)``;
-
-interface DateAndTimeSelectorProps {}
-
-const DateAndTimeSelector: FC<DateAndTimeSelectorProps> = () => {
+const DateAndTimeSelector: FC = () => {
+  const t = useTranslations();
   const disabledDates = ['2023-08-22', '2023-08-25', '2023-08-27'];
 
   const handleDisableDate = (date: Date) => {
@@ -30,7 +21,7 @@ const DateAndTimeSelector: FC<DateAndTimeSelectorProps> = () => {
   return (
     <div className={`w-full flex flex-col ${formFlexGapY}`}>
       <DatePicker
-        label="Date"
+        label={t('reserveFormDate')}
         disablePast
         shouldDisableDate={handleDisableDate}
         renderLoading={() => <p>Loading...</p>}
@@ -42,18 +33,26 @@ const DateAndTimeSelector: FC<DateAndTimeSelectorProps> = () => {
           },
         }}
       />
+
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" size="small">
-          Hour
+          {t('reserveFormTime')}
         </InputLabel>
 
         <Select
           labelId="time-selector-label"
-          label="Hour"
+          label={t('reserveFormTime')}
           fullWidth
           size="small"
         >
-          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={10}>8 - 9</MenuItem>
+          <MenuItem value={10}>9 - 10</MenuItem>
+          <MenuItem value={10}>10 - 11</MenuItem>
+          <MenuItem value={10}>11 - 12</MenuItem>
+          <MenuItem value={10}>12 - 13</MenuItem>
+          <MenuItem value={10}>15 - 16</MenuItem>
+          <MenuItem value={10}>16 - 17</MenuItem>
+          <MenuItem value={10}>17 - 18</MenuItem>
         </Select>
       </FormControl>
     </div>
