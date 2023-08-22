@@ -1,4 +1,4 @@
-const getCalendarEventsMockResponse = {
+export const getCalendarEventsMockResponse = {
   '@odata.context':
     "https://graph.microsoft.com/v1.0/$metadata#users('cd209b0b-3f83-4c35-82d2-d88a61820480')/events(subject,body,bodyPreview,organizer,attendees,start,end,location)",
   value: [
@@ -13,11 +13,11 @@ const getCalendarEventsMockResponse = {
           '<html><head></head><body><p>Dana, this is the time you selected for our orientation. Please bring the notes I sent you.</p></body></html>',
       },
       start: {
-        dateTime: '2023-08-21T10:00:00.0000000',
+        dateTime: '2023-08-21T12:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       end: {
-        dateTime: '2023-08-21T12:00:00.0000000',
+        dateTime: '2023-08-21T14:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       location: {
@@ -76,11 +76,11 @@ const getCalendarEventsMockResponse = {
           "<html><head></head><body><p>Let's meet to discuss the progress of our project and plan the next steps.</p></body></html>",
       },
       start: {
-        dateTime: '2023-08-21T14:00:00.0000000',
+        dateTime: '2023-08-21T15:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       end: {
-        dateTime: '2023-08-21T15:30:00.0000000',
+        dateTime: '2023-08-21T16:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       location: {
@@ -139,11 +139,11 @@ const getCalendarEventsMockResponse = {
           "<html><head></head><body><p>We have a client presentation scheduled to showcase our new product proposal. Let's make sure we're well-prepared.</p></body></html>",
       },
       start: {
-        dateTime: '2023-08-22T09:30:00.0000000',
+        dateTime: '2023-08-22T12:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       end: {
-        dateTime: '2023-08-22T11:00:00.0000000',
+        dateTime: '2023-08-22T13:00:00.0000000',
         timeZone: 'Pacific Standard Time',
       },
       location: {
