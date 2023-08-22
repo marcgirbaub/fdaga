@@ -2,5 +2,7 @@
   "test": "un test esp",
   "homeTitle": "Tu fisio de confianza",
   "reserveFormTitle": "Pide una cita",
-  "reserveFormCTA": "Reservar"
+  "reserveFormCTA": "Reservar",
+  "reserveFormDate": "Fecha",
+  "reserveFormTime": "Hora"
 }

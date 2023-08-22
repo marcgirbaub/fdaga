@@ -1,5 +1,8 @@
 {
   "test": "un test cat",
   "homeTitle": "El teu fisio de confiança",
-  "reserveFormTitle": "Demana una cita"
+  "reserveFormTitle": "Demana una cita",
+  "reserveFormCTA": "Reservar",
+  "reserveFormDate": "Data",
+  "reserveFormTime": "Hora"
 }

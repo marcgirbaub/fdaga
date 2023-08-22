@@ -1,11 +1,6 @@
 import React, { FC } from 'react';
 
 const CenterMap: FC = () => {
-  console.log(
-    'cclog process.env.GOOGLE_MAPS_API_KEY',
-    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-  );
-
   return (
     <div style={{ width: '100vw' }}>
       <iframe

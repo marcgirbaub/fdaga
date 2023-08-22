@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import Header from '@/components/Header/Header';
+import Providers from '../Providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,7 +36,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Header />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>
