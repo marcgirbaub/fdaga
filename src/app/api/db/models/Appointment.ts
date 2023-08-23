@@ -2,12 +2,12 @@ import { Schema, model } from 'mongoose';
 
 const appointmentSchema = new Schema({
   subject: String,
-  patient: { name: String, surname: String, phone: Number, email: String },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   startDate: String,
   endDate: String,
   comments: String,
 });
 
-const Appointment = model('Appointments', appointmentSchema, 'appointments');
+const Appointment = model('Appointment', appointmentSchema, 'appointments');
 
 export default Appointment;
