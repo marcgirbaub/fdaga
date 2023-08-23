@@ -1,4 +1,5 @@
 import { getCalendarEventsMockResponse } from '@/app/api/calendar/mockResponse';
+import { ExternalApiRequestError } from '../errors/errors';
 
 export interface CalendarEvent {
   '@odata.etag': string;
@@ -78,6 +79,7 @@ export const getCalendarEvents = async () => {
     const eventsByDate = splitCalendarEventsByDate(response.value);
     return eventsByDate;
   } catch (error) {
-    throw new Error('Error getting calendar events');
+    const errorMessage = 'Error getting calendar events';
+    throw new ExternalApiRequestError(errorMessage);
   }
 };

@@ -4,10 +4,11 @@ import {
   getCalendarEvents,
 } from '@/app/api/lib/calendarUtilities';
 import { NextResponse } from 'next/server';
-import { getSchedule } from '../db/configModel';
+import { getWeekSchedule } from '../db/configModel';
 import { DailyWorkingHours } from '@/types/configModel';
 import dayjs from 'dayjs';
 import { get } from 'http';
+import { DatabaseRequestError, errorMessages } from '../errors/errors';
 
 function getBusyHoursOfDay(events: CalendarEvent[]): number[] {
   const busyHoursByEvent = events.map((event) => {
@@ -77,19 +78,30 @@ function getNext30DaysSchedule(
 export async function GET(request: Request, response: Response) {
   try {
     const calendarEvents = await getCalendarEvents();
-    const weekSchedule = await getSchedule();
+    const weekSchedule = await getWeekSchedule();
 
     getNext30DaysSchedule(calendarEvents, weekSchedule);
 
     return NextResponse.json('This is working');
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: error,
-      },
-      {
-        status: 400,
-      }
-    );
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          error: error.message,
+        },
+        {
+          status: 500,
+        }
+      );
+    } else {
+      return NextResponse.json(
+        {
+          error: errorMessages.UNEXPECTED_ERROR,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
   }
 }
