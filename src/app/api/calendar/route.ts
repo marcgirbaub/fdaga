@@ -24,21 +24,13 @@ export async function GET(request: Request, response: Response) {
       gCalendarScopes,
     );
 
-    console.log('GETTING EVENTS........');
-
     let eventsResponse = await calendarClient.events.list({
       auth: googleAuth,
       calendarId: calendarId,
       timeMin: new Date().toISOString(),
     });
 
-    eventsResponse.data.items?.forEach((event) => {
-      console.log(event.summary);
-    });
-
-    console.log(eventsResponse.data.items?.length);
-
-    return NextResponse.json('This is working');
+    return NextResponse.json(eventsResponse);
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(
