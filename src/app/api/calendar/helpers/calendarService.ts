@@ -6,6 +6,8 @@ import weekday from 'dayjs/plugin/weekday';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import cloneDeep from 'lodash/cloneDeep';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 import {
   DailyWorkingHours,
@@ -17,6 +19,8 @@ dayjs.extend(isoWeek);
 dayjs.extend(weekday);
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 function isInNext30Days(date: dayjs.Dayjs): boolean {
   const today = dayjs();
@@ -26,8 +30,13 @@ function isInNext30Days(date: dayjs.Dayjs): boolean {
 
 function isHourBooked(hour: number, eventsForDay: CalendarEvent[]): boolean {
   return eventsForDay.some((event) => {
-    const startHour = dayjs(event.start?.dateTime).hour();
-    const endHour = dayjs(event.end?.dateTime).hour();
+    const timeZone = event.start?.timeZone || 'Europe/Madrid';
+    const startHour = dayjs(event.start?.dateTime)
+      .tz(timeZone)
+      .hour();
+    const endHour = dayjs(event.end?.dateTime)
+      .tz(timeZone)
+      .hour();
     return hour >= startHour && hour < endHour;
   });
 }
@@ -105,19 +114,17 @@ export function generateFreeHoursForDay(
   const freeHoursForDay: WorkingHourSlot[] = [];
 
   workingHoursForDay.forEach((hourSlot) => {
+    let currentSlot: WorkingHourSlot | null = null;
     for (let hour = hourSlot.start; hour < hourSlot.end; hour++) {
       if (!isHourBooked(hour, events)) {
-        // Push this hour as a free slot
-        if (
-          freeHoursForDay.length > 0 &&
-          freeHoursForDay[freeHoursForDay.length - 1].end === hour
-        ) {
-          // If the last slot's end time is this hour, extend the last slot
-          freeHoursForDay[freeHoursForDay.length - 1].end++;
+        if (currentSlot) {
+          currentSlot.end = hour + 1;
         } else {
-          // Otherwise, start a new slot
-          freeHoursForDay.push({ start: hour, end: hour + 1 });
+          currentSlot = { start: hour, end: hour + 1 };
+          freeHoursForDay.push(currentSlot);
         }
+      } else {
+        currentSlot = null;
       }
     }
   });
