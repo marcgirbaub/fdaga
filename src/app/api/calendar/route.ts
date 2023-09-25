@@ -1,14 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getWeekSchedule } from '../db/configModel';
-import { errorMessages, handleError } from '../errors/errors';
+import { handleError } from '../errors/errors';
 
-import dayjs from 'dayjs';
-
-import { DayOfWeek } from '@/types/configModel';
 import { fetchGoogleCalendarEvents } from '../lib/googleCalendar/fetchGCalendarEvents';
 import {
   calculateFreeHoursAndBooking,
-  generateFreeHoursForDay,
   processEvents,
 } from './helpers/calendarService';
 
