@@ -5,6 +5,8 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import weekday from 'dayjs/plugin/weekday';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import cloneDeep from 'lodash/cloneDeep';
+
 import {
   DailyWorkingHours,
   DayOfWeek,
@@ -127,7 +129,9 @@ export function calculateFreeHoursAndBooking(
   eventsByDay: DailyDetailsMap,
   weekSchedule: DailyWorkingHours[],
 ) {
-  Object.keys(eventsByDay).forEach((dateKey) => {
+  const newEventsByDay: DailyDetailsMap = cloneDeep(eventsByDay);
+
+  Object.keys(newEventsByDay).forEach((dateKey) => {
     const dayOfWeek = dayjs(dateKey).day() as DayOfWeek;
     const workingHoursForDay =
       weekSchedule.find((schedule) => schedule.dayOfWeek === dayOfWeek)
@@ -135,15 +139,17 @@ export function calculateFreeHoursAndBooking(
 
     const freeHoursForDay: WorkingHourSlot[] = generateFreeHoursForDay(
       workingHoursForDay,
-      eventsByDay[dateKey].events,
+      newEventsByDay[dateKey].events,
     );
 
-    eventsByDay[dateKey].freeHours = freeHoursForDay;
-    eventsByDay[dateKey].isFullyBooked =
+    newEventsByDay[dateKey].freeHours = freeHoursForDay;
+    newEventsByDay[dateKey].isFullyBooked =
       freeHoursForDay.length === 0 ||
       freeHoursForDay.reduce(
         (acc, slot) => acc + (slot.end - slot.start),
         0,
       ) === 0;
   });
+
+  return newEventsByDay;
 }

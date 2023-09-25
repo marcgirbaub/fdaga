@@ -14,11 +14,11 @@ export async function GET(request: Request, response: Response) {
 
     const weekSchedule = await getWeekSchedule();
 
-    const eventsByDay = processEvents(events);
+    let dailyDetailMap = processEvents(events);
 
-    calculateFreeHoursAndBooking(eventsByDay, weekSchedule);
+    dailyDetailMap = calculateFreeHoursAndBooking(dailyDetailMap, weekSchedule);
 
-    return NextResponse.json(eventsByDay);
+    return NextResponse.json(dailyDetailMap);
   } catch (error) {
     return handleError(error);
   }
