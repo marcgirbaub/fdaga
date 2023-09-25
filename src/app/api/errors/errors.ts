@@ -6,6 +6,7 @@ export const errorNames = {
 
 export const errorMessages = {
   UNEXPECTED_ERROR: 'Unknown error',
+  NO_EVENTS_FOUND: 'No events found',
 };
 
 export class DatabaseRequestError extends Error {
