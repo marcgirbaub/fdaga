@@ -22,13 +22,16 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-function isInNext30Days(date: dayjs.Dayjs): boolean {
+export function isInNext30Days(date: dayjs.Dayjs): boolean {
   const today = dayjs();
   const thirtyDaysLater = today.add(30, 'day');
   return date.isSameOrAfter(today) && date.isSameOrBefore(thirtyDaysLater);
 }
 
-function isHourBooked(hour: number, eventsForDay: CalendarEvent[]): boolean {
+export function isHourBooked(
+  hour: number,
+  eventsForDay: CalendarEvent[],
+): boolean {
   return eventsForDay.some((event) => {
     const timeZone = event.start?.timeZone || 'Europe/Madrid';
     const startHour = dayjs(event.start?.dateTime)
@@ -41,7 +44,7 @@ function isHourBooked(hour: number, eventsForDay: CalendarEvent[]): boolean {
   });
 }
 
-function generateRecurringEvents(event: CalendarEvent): CalendarEvent[] {
+export function generateRecurringEvents(event: CalendarEvent): CalendarEvent[] {
   const instances: CalendarEvent[] = [];
 
   if (event.recurrence) {
