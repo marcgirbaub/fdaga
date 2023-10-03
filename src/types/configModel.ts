@@ -1,4 +1,19 @@
+export enum DayOfWeek {
+  Sunday,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+}
+
+export interface WorkingHourSlot {
+  start: number;
+  end: number;
+}
+
 export interface DailyWorkingHours {
-  dayOfWeek: number;
-  workingHours: number[];
+  dayOfWeek: DayOfWeek;
+  workingHours: WorkingHourSlot[];
 }

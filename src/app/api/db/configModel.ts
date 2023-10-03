@@ -1,10 +1,6 @@
+import { DailyWorkingHours } from '@/types/configModel';
 import { DatabaseRequestError } from '../errors/errors';
 import { weekScheduleMock } from './mocks/configMocks';
-
-export interface DailyWorkingHours {
-  dayOfWeek: number;
-  workingHours: number[];
-}
 
 export const getWeekSchedule = async () => {
   try {

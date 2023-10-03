@@ -1,36 +1,25 @@
-import { getCalendarEvents } from '@/app/api/lib/calendarUtilities';
 import { NextResponse } from 'next/server';
 import { getWeekSchedule } from '../db/configModel';
-import { errorMessages } from '../errors/errors';
-import { getNext30DaysSchedule } from '../services/calendarService';
+import { handleError } from '../errors/errors';
+
+import { fetchGoogleCalendarEvents } from '../lib/googleCalendar/fetchGCalendarEvents';
+import {
+  calculateFreeHoursAndBooking,
+  processEvents,
+} from './helpers/calendarService';
 
 export async function GET(request: Request, response: Response) {
   try {
-    const calendarEvents = await getCalendarEvents();
+    const events = await fetchGoogleCalendarEvents();
+
     const weekSchedule = await getWeekSchedule();
 
-    getNext30DaysSchedule(calendarEvents, weekSchedule);
+    let dailyDetailMap = processEvents(events);
 
-    return NextResponse.json('This is working');
+    dailyDetailMap = calculateFreeHoursAndBooking(dailyDetailMap, weekSchedule);
+
+    return NextResponse.json(dailyDetailMap);
   } catch (error) {
-    if (error instanceof Error) {
-      return NextResponse.json(
-        {
-          error: error.message,
-        },
-        {
-          status: 500,
-        }
-      );
-    } else {
-      return NextResponse.json(
-        {
-          error: errorMessages.UNEXPECTED_ERROR,
-        },
-        {
-          status: 500,
-        }
-      );
-    }
+    return handleError(error);
   }
 }
