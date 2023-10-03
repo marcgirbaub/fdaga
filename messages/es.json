@@ -1,8 +1,13 @@
 {
   "test": "un test esp",
-  "homeTitle": "Tu fisio de confianza",
+  "homeTitle": "Centro Dagà",
   "reserveFormTitle": "Pide una cita",
   "reserveFormCTA": "Reservar",
   "reserveFormDate": "Fecha",
-  "reserveFormTime": "Hora"
+  "reserveFormTime": "Hora",
+  "servicesTitle": "Servicios",
+  "physiotherapyTitle": "Fisioterapia",
+  "physiotherapyDescription": "Rehabilitacion, masajes, etc.",
+  "dryNeedlingTitle": "Punción seca",
+  "dryNeedlingDescription": "Usamos la punción seca para blablabla"
 }

@@ -4,7 +4,7 @@ interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   return (
-    <header className="w-full bg-red h-20 p-6 flex items-center justify-between bg-transparent absolute top-0 z-50">
+    <header className="w-full h-16 p-6 flex items-center justify-between">
       Fisio daga
       <span>lang</span>
     </header>

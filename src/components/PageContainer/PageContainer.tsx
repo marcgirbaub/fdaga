@@ -6,7 +6,7 @@ interface PageContainerProps {
 
 const PageContainer: FC<PageContainerProps> = ({ children }) => {
   return (
-    <main className="flex flex-col justify-between items-center min-h-screen bg-white pt-20">
+    <main className="flex flex-col justify-between items-center min-h-screen bg-white">
       {children}
     </main>
   );

@@ -5,6 +5,12 @@ module.exports = {
     extend: {
       backgroundImage: {
         'landing-bg': "url('/temp-landing-bg.jpg')",
+        'services-bg-physioterapy': "url('/physioBg.jpg')",
+        'services-bg-dry-needling': "url('/dryNeedlingBg.jpg')",
+      },
+      colors: {
+        darkBlue: '#335A93',
+        lightBlue: '#68b4c4',
       },
     },
   },

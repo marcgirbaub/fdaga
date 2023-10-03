@@ -13,7 +13,7 @@ const ReserveForm: FC<ReserveFormProps> = () => {
     <div
       className={`w-full bg-white/75 rounded-md p-4 flex flex-col items-center ${formFlexGapY}`}
     >
-      <h1>{t('reserveFormTitle')}</h1>
+      <h1 className="text-black text-center">{t('reserveFormTitle')}</h1>
       <form
         className={`w-full px-8 flex flex-col items-center ${formFlexGapY}`}
       >

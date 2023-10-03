@@ -12,3 +12,22 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
+
+.main-bg-gradient {
+  background: rgb(54, 89, 145);
+  background: linear-gradient(
+    rgba(54, 89, 145, 1) 0%,
+    rgba(104, 180, 196, 1) 100%
+  );
+}
+
+@media screen and (min-width: 1024px) {
+  .main-bg-gradient {
+    background: rgb(54, 89, 145);
+    background: linear-gradient(
+      90deg,
+      rgba(54, 89, 145, 1) 0%,
+      rgba(104, 180, 196, 1) 100%
+    );
+  }
+}

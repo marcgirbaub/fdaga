@@ -1,8 +1,9 @@
 {
   "test": "un test cat",
-  "homeTitle": "El teu fisio de confiança",
+  "homeTitle": "Centre Dagà",
   "reserveFormTitle": "Demana una cita",
   "reserveFormCTA": "Reservar",
   "reserveFormDate": "Data",
-  "reserveFormTime": "Hora"
+  "reserveFormTime": "Hora",
+  "servicesTitle": "Serveis"
 }
