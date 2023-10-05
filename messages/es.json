@@ -9,5 +9,12 @@
   "physiotherapyTitle": "Fisioterapia",
   "physiotherapyDescription": "Rehabilitacion, masajes, etc.",
   "dryNeedlingTitle": "Punción seca",
-  "dryNeedlingDescription": "Usamos la punción seca para blablabla"
+  "dryNeedlingDescription": "Usamos la punción seca para blablabla",
+  "deportivePhysiotherapyTitle": "Fisioterapia deportiva",
+  "deportivePhysiotherapyDescription": "Fisioterapia especifica para deportistas. Descarga muscular, recuperación de lesiones, etc.",
+  "theCenterTitle": "El centro",
+  "nilName": "Nil Dagà Ramos",
+  "whereAreWe": "Donde estamos?",
+  "centerAddress": "Canovelles, Passeig de la Ribera 53, 3o 1a",
+  "getDirections": "Como llegar"
 }

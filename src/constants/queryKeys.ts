@@ -1,0 +1,1 @@
+export const GET_CALENDAR_QUERY = 'GET_CALENDAR_QUERY';

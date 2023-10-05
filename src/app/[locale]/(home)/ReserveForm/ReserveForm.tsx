@@ -3,11 +3,14 @@ import { useTranslations } from 'next-intl';
 import React, { FC } from 'react';
 import DateAndTimeSelector from './DateAndTimeSelector/DateAndTimeSelector';
 import { formFlexGapY } from './styleClassNames';
+import useReserveFormData from './useReserveFormData';
 
 interface ReserveFormProps {}
 
 const ReserveForm: FC<ReserveFormProps> = () => {
   const t = useTranslations();
+
+  const { data } = useReserveFormData();
 
   return (
     <div

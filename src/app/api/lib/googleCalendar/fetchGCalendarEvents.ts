@@ -19,6 +19,7 @@ export async function fetchGoogleCalendarEvents(): Promise<CalendarEvent[]> {
     auth: googleAuth,
     calendarId: calendarId,
     timeMin: new Date().toISOString(),
+    timeZone: 'Europe/Madrid',
   });
 
   if (!eventsResponse?.data?.items?.length) {

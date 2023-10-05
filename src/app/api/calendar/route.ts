@@ -11,6 +11,7 @@ import {
 export async function GET(request: Request, response: Response) {
   try {
     const events = await fetchGoogleCalendarEvents();
+    console.log(events);
 
     const weekSchedule = await getWeekSchedule();
 

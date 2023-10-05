@@ -34,12 +34,16 @@ export function isHourBooked(
 ): boolean {
   return eventsForDay.some((event) => {
     const timeZone = event.start?.timeZone || 'Europe/Madrid';
-    const startHour = dayjs(event.start?.dateTime)
+
+    const startHour = dayjs
+      .utc(event.start?.dateTime)
       .tz(timeZone)
       .hour();
-    const endHour = dayjs(event.end?.dateTime)
+    const endHour = dayjs
+      .utc(event.end?.dateTime)
       .tz(timeZone)
       .hour();
+
     return hour >= startHour && hour < endHour;
   });
 }
@@ -53,7 +57,20 @@ export function generateRecurringEvents(event: CalendarEvent): CalendarEvent[] {
 
     if (bydayMatch) {
       const days = bydayMatch[1].split(',').map((day) => day.toUpperCase());
-      let currentDate = dayjs(event?.start?.dateTime);
+      const timeZone = event.start?.timeZone || 'Europe/Madrid';
+
+      let currentDate = dayjs.utc().startOf('day').tz(timeZone);
+
+      if (dayjs(event.start?.dateTime).isAfter(currentDate)) {
+        currentDate = dayjs(event.start?.dateTime)
+          .startOf('day')
+          .tz(timeZone);
+      }
+
+      currentDate = currentDate
+        .hour(dayjs(event.start?.dateTime).hour())
+        .minute(dayjs(event.start?.dateTime).minute())
+        .second(dayjs(event.start?.dateTime).second());
 
       while (isInNext30Days(currentDate)) {
         if (days.includes(currentDate.format('dd').toUpperCase())) {
@@ -120,13 +137,13 @@ export function generateFreeHoursForDay(
     let currentSlot: WorkingHourSlot | null = null;
     for (let hour = hourSlot.start; hour < hourSlot.end; hour++) {
       if (!isHourBooked(hour, events)) {
-        if (currentSlot) {
-          currentSlot.end = hour + 1;
-        } else {
+        if (!currentSlot) {
           currentSlot = { start: hour, end: hour + 1 };
           freeHoursForDay.push(currentSlot);
+        } else {
+          currentSlot.end = hour + 1;
         }
-      } else {
+      } else if (currentSlot) {
         currentSlot = null;
       }
     }
