@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 import ReserveForm from './ReserveForm/ReserveForm';
 import ServiceCard, { Backgrounds } from './ServiceCard/ServiceCard';
-import Image from 'next/image';
 
 export default function Home() {
   const t = useTranslations();

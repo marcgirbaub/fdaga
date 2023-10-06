@@ -1,9 +1,22 @@
 {
-  "test": "un test cat",
+  "lang": "Idioma",
+  "langEsp": "Esp",
+  "langCat": "Cat",
   "homeTitle": "Centre Dagà",
   "reserveFormTitle": "Demana una cita",
   "reserveFormCTA": "Reservar",
   "reserveFormDate": "Data",
   "reserveFormTime": "Hora",
-  "servicesTitle": "Serveis"
+  "servicesTitle": "Serveis",
+  "physiotherapyTitle": "Fisioteràpia",
+  "physiotherapyDescription": "Rehabilitació, massatges, etc.",
+  "dryNeedlingTitle": "Punció seca",
+  "dryNeedlingDescription": "Utilitzem la punció seca per blablabla",
+  "deportivePhysiotherapyTitle": "Fisioteràpia esportiva",
+  "deportivePhysiotherapyDescription": "Fisioteràpia específica per a esportistes. Descàrrega muscular, recuperació de lesions, etc.",
+  "theCenterTitle": "El centre",
+  "nilName": "Nil Dagà Ramos",
+  "whereAreWe": "On som?",
+  "centerAddress": "Canovelles, Passeig de la Ribera 53, 3r 1a",
+  "getDirections": "Com arribar"
 }

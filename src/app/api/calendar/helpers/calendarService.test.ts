@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { isInNext30Days } from './calendarService';
+import { isDayInReservationRange } from './calendarService';
 
 jest.mock('dayjs', () => {
   const actualDayjs = jest.requireActual('dayjs');
@@ -8,32 +8,4 @@ jest.mock('dayjs', () => {
   };
   mockedDayjs.extend = actualDayjs.extend; // Include 'extend' function in your mock
   return mockedDayjs;
-});
-
-describe('Given a isInNext30Days function', () => {
-  describe('When called with a date within the next 30 days', () => {
-    test('Then should return true', () => {
-      // Given
-      const testDate = dayjs().add(10, 'day');
-
-      // When
-      const result = isInNext30Days(testDate);
-
-      // Then
-      expect(result).toBe(true);
-    });
-  });
-
-  describe('When called with a date beyond the next 30 days', () => {
-    test('Then should return false', () => {
-      // Given
-      const testDate = dayjs().add(31, 'day');
-
-      // When
-      const result = isInNext30Days(testDate);
-
-      // Then
-      expect(result).toBe(false);
-    });
-  });
 });

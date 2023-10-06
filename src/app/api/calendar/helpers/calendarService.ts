@@ -14,6 +14,7 @@ import {
   DayOfWeek,
   WorkingHourSlot,
 } from '@/types/configModel';
+import { DATE_RESERVATION_RANGE } from '@/constants/calendarConstants';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekday);
@@ -22,9 +23,9 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export function isInNext30Days(date: dayjs.Dayjs): boolean {
+export function isDayInReservationRange(date: dayjs.Dayjs): boolean {
   const today = dayjs();
-  const thirtyDaysLater = today.add(30, 'day');
+  const thirtyDaysLater = today.add(DATE_RESERVATION_RANGE, 'day');
   return date.isSameOrAfter(today) && date.isSameOrBefore(thirtyDaysLater);
 }
 
@@ -72,7 +73,7 @@ export function generateRecurringEvents(event: CalendarEvent): CalendarEvent[] {
         .minute(dayjs(event.start?.dateTime).minute())
         .second(dayjs(event.start?.dateTime).second());
 
-      while (isInNext30Days(currentDate)) {
+      while (isDayInReservationRange(currentDate)) {
         if (days.includes(currentDate.format('dd').toUpperCase())) {
           const newInstance = { ...event };
           newInstance.start = { ...(newInstance.start || {}) };

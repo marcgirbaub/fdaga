@@ -1,5 +1,7 @@
 {
-  "test": "un test esp",
+  "lang": "Idioma",
+  "langEsp": "Esp",
+  "langCat": "Cat",
   "homeTitle": "Centro Dagà",
   "reserveFormTitle": "Pide una cita",
   "reserveFormCTA": "Reservar",

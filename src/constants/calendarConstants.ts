@@ -1,0 +1,1 @@
+export const DATE_RESERVATION_RANGE = 60;
