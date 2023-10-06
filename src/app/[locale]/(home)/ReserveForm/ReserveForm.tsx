@@ -1,10 +1,11 @@
 import { Button, TextField } from '@mui/material';
 import { useTranslations } from 'next-intl';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import DateAndTimeSelector from './DateAndTimeSelector/DateAndTimeSelector';
 import { formFlexGapY } from './styleClassNames';
 import useReserveFormData from './useReserveFormData';
 import { DailyDetailsMap } from '@/app/api/calendar/helpers/calendarService';
+import dayjs, { Dayjs } from 'dayjs';
 
 function getUnavailableDates(data: DailyDetailsMap | undefined) {
   const unavailableDates = [];
@@ -22,12 +23,26 @@ function getUnavailableDates(data: DailyDetailsMap | undefined) {
   return unavailableDates;
 }
 
+export interface ReserveFormState {
+  date: Dayjs;
+  time: string;
+  name: string;
+  email: string;
+  comments: string;
+}
+
 const ReserveForm: FC = () => {
   const t = useTranslations();
 
-  console.count('rendering ReserveForm');
-
   const { data, isLoading, isFetching, isError } = useReserveFormData();
+
+  const [formState, setFormState] = useState<ReserveFormState>({
+    date: dayjs(),
+    time: '',
+    name: '',
+    email: '',
+    comments: '',
+  });
 
   const unavailableDates = getUnavailableDates(data);
 
@@ -44,6 +59,9 @@ const ReserveForm: FC = () => {
         <DateAndTimeSelector
           disabledDates={unavailableDates}
           isLoading={isLoading || isFetching}
+          dailyDetailsMap={data}
+          formState={formState}
+          setFormState={setFormState}
         />
 
         <TextField fullWidth size="small" label="name" name="name" required />

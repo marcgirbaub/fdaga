@@ -18,9 +18,7 @@ const Header: FC<HeaderProps> = () => {
   const router = useRouter();
   const pathname = usePathname();
   const format = useFormatter();
-  const [currentLang, setCurrentLang] = useState(
-    window.location.pathname.split('/')[1] || 'es',
-  );
+  const [currentLang, setCurrentLang] = useState('es');
 
   const handleChangeLanguage = (event: SelectChangeEvent<string>) => {
     const newLanguage = event.target.value;
@@ -30,8 +28,6 @@ const Header: FC<HeaderProps> = () => {
   useEffect(() => {
     setCurrentLang(window.location.pathname.split('/')[1] || 'es');
   }, [router]);
-
-  console.log('currentLang', currentLang);
 
   return (
     <header className="w-full h-16 p-6 flex items-center justify-between">
